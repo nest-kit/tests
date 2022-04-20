@@ -1,0 +1,22 @@
+{
+    "semi": false,
+    "singleQuote": true,
+    "jsxSingleQuote": true,
+    "tabWidth": 4,
+    "bracketSpacing": true,
+    "printWidth": 80,
+    "importOrder": [
+        "(.*?)(react|blitz|@nest)(.*?)",
+        "<THIRD_PARTY_MODULES>",
+        "^[./]"
+    ],
+    "importOrderParserPlugins": [
+        "typescript",
+        "classProperties",
+        "decorators-legacy",
+        "jsx"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true,
+    "importOrderCaseInsensitive": true
+}

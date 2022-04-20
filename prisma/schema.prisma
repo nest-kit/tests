@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/@prisma/client/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int            @id @default(autoincrement())
+  username   String?
+  nickname   String?
+  mobile     String?
+  email      String?
+  isAdmin    Boolean?       @default(false)
+  isBan      Boolean?       @default(false)
+  inivitedBy Int?
+  createdAt  DateTime?      @default(now())
+  updatedAt  DateTime?      @updatedAt
+  auths      UserAuth[]
+}
+
+enum UserAuthType {
+  PASSWORD
+  QQ_OPEN_ID
+  QQ_UNION_ID
+  WECHAT_OPEN_ID
+  WECHAT_UNION_ID
+}
+
+model UserAuth {
+  id        Int          @id @default(autoincrement())
+  type      UserAuthType
+  authKey   String
+  authRaw   Json
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  userId    Int?
+  user      User?        @relation(fields: [userId], references: [id])
+}
